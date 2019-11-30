@@ -778,7 +778,7 @@ aside .machine .tablet {
 }
 .tablet .tickets .ticket {
     width: 4vw;
-    height: 4vw;
+    height: 3vw;
     display: none;
     padding: 0.3vh;
     line-height: 4vh;
