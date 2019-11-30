@@ -83,7 +83,7 @@ main {
 }
 
 /****** Buttons *****/
-#btnMap, #btnAddCharacter, #btnTickets {
+#btnMap, #btnAddCharacter, #btnTickets, #btnExit {
     position: fixed; 
     display: block;
     z-index: 10000;
@@ -108,9 +108,8 @@ main {
     display: none;   
 }
 
-#btnAddCharacter, #btnTickets {
+#btnAddCharacter, #btnTickets, #btnExit {
     display: block;
-    left: 1vw;
     bottom: 1vw;
     width: 5vw;
     height: 5vw;
@@ -121,8 +120,12 @@ main {
     background-color: beige;
 }
 #btnAddCharacter {
+    left: 1vw;
     background-position: -5.7vw -0vw;
     background-size: 16vw 22vw;    
+}
+#btnTickets {
+     left: 1vw;   
 }
 #btnAddCharacter:after, #btnTickets:before {
     content: '+';
@@ -140,16 +143,20 @@ main {
     border-radius: 50%;
     background-color: #660000;
 }
-#btnTickets {
+#btnTickets, #btnExit {
     display: none;
     z-index: 10001;
     background-image: url(../images/picto-ticket.png);   
     background-size: cover;    
 }
+#btnExit {
+    right: 1vw;
+    background-image: url(../images/picto-exit.png);      
+}
 .selected #btnAddCharacter {
     display: none;
 }
-.selected #btnTickets {
+.selected #btnTickets, .selected #btnExit {
     display: block;   
 }
 #btnTickets:before {
@@ -207,7 +214,7 @@ input[type="radio"]:checked + * {
     border: solid 1vh #660000;
     width: 80vw;
     height: 5vw;
-    left: 10vw;
+    left: 8vw;
     bottom: 1vw;
     background-color: beige;
     border-radius: 1vh;
@@ -1021,6 +1028,7 @@ nav.animate.dec .outside .wall {
     left: 350vh;
     top: 10vh;
     color: white; 
+    cursor: pointer;
     font-size: 3vh;
     padding-top: 6vh;
     box-sizing: border-box;

@@ -72,7 +72,15 @@ document.addEventListener("DOMContentLoaded", function() {
          *  @param  Character   c   the character to remove
          */
         this.removeCharacter = function(c) {
-            this.characters.splice(this.characters.indexOf(c), 1);
+            if (c.state != 1) {
+                return;   
+            }
+            this.select(c);
+            c.state = 5;
+            c.goTo(c.position.x, 110, function() {
+                c.element.parentNode.removeChild(c.element);
+                this.characters.splice(this.characters.indexOf(c), 1);
+            }.bind(this));
         }
          
         /**
@@ -118,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             return null;
         }
+        
         
         
         /** 
@@ -552,6 +561,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
             
+            // click on exit 
+            if (e.target.id == "btnExit") {
+                if (characters.current.state == 1) {
+                    characters.removeCharacter(characters.current);
+                }
+            }
+            
             // click on sprite
             if (e.target.classList.contains("sprite")) {
                 let c = characters.getCharacterFromElement(e.target);
@@ -732,6 +748,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // assignmet of computed HTML code to the 
             this.element.innerHTML = html + 
                 "<label id='btnAddCharacter' class='sprite" + (Math.random()*8 | 0) + "'></label>" + 
+                "<label id='btnExit'></label>" +
                 "<label id='btnTickets' for='cbTickets'></label>";
 
             // update scrolling for panels
