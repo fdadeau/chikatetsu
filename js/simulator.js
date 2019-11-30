@@ -1323,7 +1323,7 @@ document.addEventListener("DOMContentLoaded", function() {
          *  Gives the ticket back to the user because it could not be adjusted. 
          */
         this.giveBackTicket = function() {
-            document.querySelector("aside .tickets").innerHTML = "<div class='ticket'></div>";        
+            document.querySelector("aside .tickets").innerHTML = "<div class='ticket' style='left: 4vw;'></div>";        
             // add the .out class to prevent closing 
             this.element.classList.add("out");
         }
@@ -1595,6 +1595,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (e.target.classList.contains("tickets") && ticketMachine.state == "FA0") {
                 if (characters.current && characters.current.tickets.length > 0) {
                     // shows the ticket selection window. 
+                    characters.current.updateTickets();
                     document.getElementById("cbTickets").checked = true;   
                 }
             }
