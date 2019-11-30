@@ -103,10 +103,9 @@ main {
 
 #radScreen:checked ~ #btnMap {
     top: 8vw;   
-    display: block;
 }
-#radMap:checked ~ #btnMap {
-    display: block;   
+#radSubway:checked ~ #btnMap {
+    display: none;   
 }
 
 #btnAddCharacter, #btnTickets {
@@ -173,9 +172,6 @@ input[type="radio"]:checked + * {
     display: block;   
 }
 
-.selected ~ #btnMap {
-    display: none;   
-}
 
 
 /****************************************************
@@ -919,7 +915,7 @@ aside.out .btnClose {
     content: '\00A5 ' attr(data-fare);
     padding-right: 2px;
 }
-.screen .right .fares label:after {
+.screen .right .fares label[data-child]:after {
     content: '/' attr(data-child);
     font-size: 80%;
 }

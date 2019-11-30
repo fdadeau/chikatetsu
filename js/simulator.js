@@ -1288,7 +1288,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
             else {
-                html = "<div class='ticket'></div>";   
+                html = "<div class='ticket' style='left: 4vw;'></div>";   
                 // adjust fare on ticket 
                 let total0 = (this.ticket.isChild() ? this.fare.child : this.fare.adult) - this.ticket.getAmount();
                 this.ticket.adjustFare(total0);                
