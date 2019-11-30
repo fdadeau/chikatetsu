@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             this.select(c);
             c.state = 5;
-            c.goTo(c.position.x, 110, function() {
+            c.goTo(c.position.x, BOTTOM + 8, function() {
                 c.element.parentNode.removeChild(c.element);
                 this.characters.splice(this.characters.indexOf(c), 1);
             }.bind(this));
