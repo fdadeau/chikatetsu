@@ -157,6 +157,14 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         
+        
+        // click on the map button --> do nothing
+        document.getElementById("btnMap").addEventListener("click", function(e) {
+            e.preventDefault();
+            map.close();
+        });
+            
+        
     }
     
     /** 
@@ -521,6 +529,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // click on the ticket button --> do nothing
             if (e.target.id == "btnTickets") {
+                if (characters.current.state != 1 && characters.current.state != 3) {
+                    return;
+                }
                 characters.current.updateTickets();
                 return;
             }   
@@ -529,14 +540,6 @@ document.addEventListener("DOMContentLoaded", function() {
             if (document.getElementById("cbTickets").checked) {
                 return;
             }
-            
-            // click on the map button --> do nothing
-            if (e.target.id == "btnMap") {
-                e.preventDefault();
-                document.getElementById("radMap").checked = true;
-                document.querySelector(".station.this").scrollIntoView({ behavior: 'auto', block: 'center', inline: 'center' });
-                return;
-            }   
             
             // click on addCharacter button 
             if (e.target.id == "btnAddCharacter") {
@@ -728,7 +731,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // assignmet of computed HTML code to the 
             this.element.innerHTML = html + 
-                "<label id='btnMap' for='radMap'></label>" + 
                 "<label id='btnAddCharacter' class='sprite" + (Math.random()*8 | 0) + "'></label>" + 
                 "<label id='btnTickets' for='cbTickets'></label>";
 
@@ -862,18 +864,52 @@ document.addEventListener("DOMContentLoaded", function() {
         /** Element associated to the map */
         this.element = document.getElementById("map");
      
+        //** Previous radio button that was selected */
+        this.previous = null;
         
         /** Events: clicks on the map to change station */
         this.element.addEventListener("click", function(e) {
+            
+            e.stopPropagation();
+            e.preventDefault();
+            
             if (e.target.classList.contains("station")) {
+                if (characters.current) {
+                    return;   
+                }
                 let name = e.target.dataset.name;
                 let st = network.getStationByName(name);
                 station.display(st);
                 map.displayNetworkMap(st);
                 document.querySelector("main > footer").scrollIntoView();
-             }
+                return;
+            }
         });
     
+        
+        /**
+         *  Closes the map window and restores the opener.
+         */
+        this.close = function() {
+            if (this.previous != null) {
+                this.previous.checked = true;
+                this.previous = null;
+                if (document.getElementById("radStation").checked) {
+                    if (characters.current) {
+                        characters.current.element.scrollIntoView({ behavior: 'auto', block: 'center', inline: 'center' });   
+                    }
+                    else {
+                        document.querySelector("main > footer").scrollIntoView();   
+                    }
+                }
+            }
+            else {
+                this.previous = document.querySelector("input[name=rad0]:checked");
+                document.getElementById("radMap").checked = true;
+                document.querySelector(".station.this").scrollIntoView({ behavior: 'auto', block: 'center', inline: 'center' });
+            }
+        }
+        
         
         /**
          *  Displays the network map, with fares and current station identified
@@ -1248,7 +1284,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (this.vending) {
                 let total=this.tickets.child+this.tickets.adult;
                 for (let i=0; i < total; i++) {
-                    html += "<div class='ticket' style='left: " + (i/total * 9) + "vw;'></div>";
+                    html += "<div class='ticket' style='left: " + (i/total * 8 + 1) + "vw;'></div>";
                 }
             }
             else {

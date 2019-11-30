@@ -100,8 +100,13 @@ main {
     border-radius: 10%;
     cursor: pointer;
 }
-.selected #btnMap {
-    display: none;   
+
+#radScreen:checked ~ #btnMap {
+    top: 8vw;   
+    display: block;
+}
+#radMap:checked ~ #btnMap {
+    display: block;   
 }
 
 #btnAddCharacter, #btnTickets {
@@ -168,7 +173,7 @@ input[type="radio"]:checked + * {
     display: block;   
 }
 
-body.selected #btnMap {
+.selected ~ #btnMap {
     display: none;   
 }
 
@@ -770,7 +775,7 @@ aside .machine .tablet {
 }
 .tablet .tickets .ticket {
     width: 4vw;
-    height: 4vh;
+    height: 4vw;
     display: none;
     padding: 0.3vh;
     line-height: 4vh;
@@ -1666,6 +1671,8 @@ nav.animate:before {
 #map .station {
     font-size: 1.3vh;
     border: solid 0.4vh white;
+}
+main:not(.selected) ~ #map .station {
     cursor: pointer;
 }
 #map .lineinfo {
