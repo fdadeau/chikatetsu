@@ -1,0 +1,1748 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*******************************************************
+            General parameters on the page
+*******************************************************/
+
+body {
+    font-family: sans-serif;
+    transition: opacity 0.5s linear 0s;
+    background-color: black; 
+    opacity: 1;
+}
+
+
+/****************************************************************
+ *                 Stylesheet for stations                      *
+ ****************************************************************/
+
+body > *:not([id^=btn]) {
+    width: 100vw;
+    position: absolute;
+    display: none;
+}
+
+main, aside, nav, #map {
+    top: 0;
+}
+
+* {
+    cursor: default;   
+}
+
+main {
+    overflow: hidden;
+}
+
+/****** Buttons *****/
+#btnMap, #btnAddCharacter, #btnTickets {
+    position: fixed; 
+    display: block;
+    z-index: 10000;
+}
+
+#btnMap {
+    top: 2vw;
+    width: 6vw;
+    height: 6vw;
+    right: 2vw;
+    background-image: url(../images/sapporo-map.jpg);
+    background-size: cover;
+    border: solid 1vh #660000;
+    border-radius: 10%;
+    cursor: pointer;
+}
+.selected #btnMap {
+    display: none;   
+}
+
+#btnAddCharacter, #btnTickets {
+    display: block;
+    left: 1vw;
+    bottom: 1vw;
+    width: 5vw;
+    height: 5vw;
+    border: solid 1vh #660000;
+    border-radius: 10%;
+    cursor: pointer;
+    padding: 0;
+    background-color: beige;
+}
+#btnAddCharacter {
+    background-position: -5.7vw -0vw;
+    background-size: 16vw 22vw;    
+}
+#btnAddCharacter:after, #btnTickets:before {
+    content: '+';
+    position: absolute; 
+    font-size: 2vw;
+    line-height: 1.7vw;
+    display: block;
+    text-align: center;
+    top: 0.2vw;
+    right: 0.2vw;
+    padding: 0;
+    height: 1.8vw;
+    width: 1.8vw;
+    color: white;
+    border-radius: 50%;
+    background-color: #660000;
+}
+#btnTickets {
+    display: none;
+    z-index: 10001;
+    background-image: url(../images/picto-ticket.png);   
+    background-size: cover;    
+}
+.selected #btnAddCharacter {
+    display: none;
+}
+.selected #btnTickets {
+    display: block;   
+}
+#btnTickets:before {
+    content: attr(data-number);
+    color: white;
+    line-height: 2vw;
+    right: 0.1vw;
+    top: 0.1vw;
+    font-size: 1.2vw;
+}
+
+input[type="radio"] {
+    position: absolute; 
+    display: none;
+}
+input[type="radio"] + * {
+    display: none;   
+}
+input[type="radio"]:checked + * {
+    display: block;   
+}
+
+body.selected #btnMap {
+    display: none;   
+}
+
+
+/****************************************************
+ *                      TICKETS
+ ****************************************************/
+#bcTickets .ticket[data-child="1"]:before {
+    content: 'C';
+    display: block;
+    position: absolute; 
+    padding: 0.2vw;
+    color: black;
+    top: 0;
+    left: 0;
+    font-size: 1.5vw;
+}
+#bcTickets .ticket:after {
+    display: block;
+    position: absolute; 
+    content: '\00A5' attr(data-fare);
+    right: 0.2vw;
+    top: 1.8vw;
+    color: black;
+    font-size: 1.5vw;
+}
+
+
+#cbTickets:checked + #bcTickets {
+    display: block;   
+}
+#bcTickets {
+    display: none;
+    position: fixed;
+    border: solid 1vh #660000;
+    width: 80vw;
+    height: 5vw;
+    left: 10vw;
+    bottom: 1vw;
+    background-color: beige;
+    border-radius: 1vh;
+    z-index: 10000;
+    color: #6558b3;
+    font-size: 0.7vw;
+}
+
+#bcTickets > div {
+    overflow-y: scroll;   
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    height: 5vw;
+    width: 76vw;
+    margin: 0 2vw; 
+}
+
+.ticket {
+    position: relative;
+    width: 10vw;
+    box-sizing: border-box;
+    height: 4vw;
+    border: solid 1px #000;
+    background-color: aliceblue;
+    padding-top: 2.5vw;    
+    margin: 0.5vw;
+    cursor: pointer;
+    background-image: url(../images/st-logo-bw.png);
+    background-size: 1.5vw 1.5vw;
+    background-repeat: repeat;
+    flex-shrink: 0;
+}
+
+#bcTickets p {
+    text-align: center;
+    font-size: 2.5vw;
+    line-height: 5vw;
+}
+
+
+/***** Backgrounds *****/
+main > * {
+    z-index: 0;
+    border: none;
+    background-size: 100% 100%;
+}
+main > header {
+    background-image: url(../images/bg-header.png);
+    height: 12.5vw;
+}
+main > section {
+    position: relative;
+    background-image: url(../images/bg-section-line.png);
+    height: 25vw;
+}
+main > footer {
+    position: relative;
+    background-image: url(../images/bg-footer-barrier.png);
+    height: 50vw;
+}
+
+/* line for blinds */
+main > section:before, 
+main > footer:before, 
+main > section:after  {
+    content: '';
+    background-color: #B4B430;
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 2.7vw;
+    left: 44.4vw;
+}
+main > section:first-of-type:before {
+    height: 67%;   
+}
+main > section:after {
+    width: 62.4vw;
+    left: 16.9vw;
+    top: 7.5vw;
+    height: 2.7vw;
+    z-index: -1;
+    border-radius: 0.3vw;
+}
+main > section.single:after {
+    width: 30.4vw;
+    left: 34.9vw;
+    height: 18.7vw;
+}
+
+
+/****** Panels ******/
+.panel {
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+    perspective: 1000px;
+}
+
+.panel > * {
+    position: absolute;
+    padding: 1vw;
+    top: -0.5vw;
+    transform-origin: 0px 0px 0px;
+    box-shadow: 0.2vw -0.8vw 0vw black,
+                -0.2vw -0.8vw 0vw black,
+                -0.2vw 0.2vw 0vw black,
+                0.2vw 0.2vw 0vw black;
+    transform: rotateX(-40deg);
+}
+
+.panel > *:before, .panel > *:after {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    height: 2.6vw;
+    top: -3.4vw;
+    background-color: black;
+    width: 1vw;
+    box-shadow: -0.2vw 0.2vw 0vw black,
+                0.2vw 0.2vw 0vw black;
+}
+.panel > *:before {
+    left: 8%;
+}
+.panel > *:after {
+    right: 8%;
+}
+
+
+/* Main panel */
+.panel h1 {
+    box-sizing: border-box;
+    background-color: #222;
+    color: white;
+    width: 40vw;
+    left: 30vw;
+    font-size: 2.2vw;
+    line-height: 2.5vw;
+    font-weight: bold;
+    transition: opacity 0.3s linear 0s;
+    opacity: 1;
+}
+.panel h1:hover {
+    opacity: 0.3;   
+}
+.panel h1 span {
+    font-size: 90%;   
+}
+
+
+/* Section panels */
+.panel h2 {
+    position: absolute;
+    text-align: left;
+    box-sizing: border-box;
+    width: 28vw;
+    padding-left: 6vw;
+    background-color: #222;
+    color: black;
+    font-size: 2vw;
+    font-weight: bold;   
+    transition: opacity 0.3s linear 0s;
+    opacity: 1;
+}
+.panel h2:hover {
+    opacity: 0.4;   
+}
+.panel h2:first-child {
+    left: 8vw;    
+}
+.panel h2:last-child {
+    right: 10vw;    
+}
+.panel h2:only-of-type {
+    left: 37vw;   
+}
+
+.panel h2 span {
+    font-size: 70%;   
+}
+
+
+.arrow {
+    position: absolute;
+    left: 0vw;
+    top: 1.5vw;
+    font-size: 3vw;
+    transform: rotate(90deg);
+}
+
+
+/** Lines squares */
+.panel h1 > * {
+    display: inline-block;
+}
+
+.panel .line {
+    box-sizing: border-box;
+    width: 5vw;
+    height: 5vw;
+    padding: 0.3vw;
+    font-size: 1.2vw;
+    line-height: 1.2vw;
+    font-weight: normal;
+    float: right;
+    text-align: center;
+    margin-left: 1vw;
+    border: solid 0.4vw #000;
+    border-radius: 0.5vw;
+    background-color: white;
+    color: black;
+}
+.panel .line > div {
+    display: block;
+    margin: 0 auto;
+    padding: 0.2vw;
+    line-height: 1.1vw;
+    font-size: 85%;
+    width: 2vw;
+    height: 2vw;
+    border: solid 0.2vw #000;
+    border-radius: 50%;
+}
+
+h1 img.logo {
+    background-color: white;
+    padding: 0.6vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 0.5vw;
+    float: left;
+    margin-right: 1vw;
+}
+
+h2 img.logo {
+    padding: 0.2vw;
+    width: 2vw;
+    height: 2vw;
+    border-radius: 0.3vw;
+    margin-right: 1vw;
+    position: absolute;
+    top: 1.6vw;
+    left: 2.6vw;
+} 
+
+/**** Barriers ****/
+
+.barrier {
+    background-size: contain;
+    background-image: url(../images/scan-croix.png);
+    background-color: black;
+    width: 2.6vw;
+    height: 4.1vw;
+}
+.barrier, .barrier:before, .barrier:after {
+    display: block;
+    position: absolute;
+}
+.barrier:before, .barrier:after {
+    content: '';
+    box-sizing: border-box;
+}
+
+/** Position of scanners */
+.barrier:nth-of-type(1),
+.barrier:nth-of-type(2),
+.barrier:nth-of-type(3)  {
+    top: 22.1vw;
+    left: 21.6vw;
+}
+.barrier:nth-of-type(2) {
+    left: 30.6vw;
+}
+.barrier:nth-of-type(3) {
+    left: 39.8vw;
+}
+.barrier:nth-of-type(4),
+.barrier:nth-of-type(5),
+.barrier:nth-of-type(6) {
+    transform-origin: center;
+    transform: rotate(180deg);
+    top: 28.9vw;
+    left: 58.05vw;
+}
+.barrier:nth-of-type(5) {
+    left: 67.2vw;
+}
+.barrier:nth-of-type(6) {
+    left: 76.6vw;
+}
+
+/** Small doors */
+.barrier:before {
+    background-image: url(../images/barrier.png);  
+    background-size: contain;
+    width: 5.2vw;
+    height: 4vw;
+    left: 2.9vw;
+    top: 5.7vw;
+    transform: rotate(180deg);
+}
+
+.barrier:nth-of-type(4):before, 
+.barrier:nth-of-type(5):before, 
+.barrier:nth-of-type(6):before {
+    transform: scale(-1, 1);
+    top: 3.9vw;
+}
+
+
+.barrier.ok {
+    background-color: green;
+}
+.barrier.ok:before {
+    background-image: none;   
+}
+
+.barrier.ko {
+    background-color: red;
+}
+
+
+/***** Ticket vending machines */
+.selected footer > * {
+    cursor: pointer;   
+}
+footer > .TVM, footer > .FAM {
+    position: absolute;
+    width: 3.5vw;
+    height: 5.5vw;
+}
+footer > .TVM {
+    top: 29.5vw;
+    left: 3vw;
+}
+footer > .TVM:nth-of-type(8) {
+    left: 82.5vw;
+}
+footer > .TVM:nth-of-type(9) {
+    left: 88.1vw;
+}
+footer > .TVM:nth-of-type(10) {
+    left: 93.5vw;
+}
+footer > .FAM {
+    top: 8vw;
+    left: 4.5vw;
+}
+footer > .FAM:last-of-type {
+    left: 10vw;
+}
+
+
+
+
+/****** Escalators ******/
+.escalator, .overlay {
+    position: absolute;
+    width: 28vw;
+    height: 16.5vw;
+    background-size: 28vw 16.5vw;
+}
+
+.escalator {
+    background-image: url(../images/escalators.png);
+}
+.overlay {
+    height: 7.5vw;
+    background-image: url(../images/fg-escalators.png);
+    background-position: bottom;
+    z-index: 10;
+}
+
+.escalator.dec, .escalator.dec + .overlay {
+    left: 12vw;
+}
+.escalator.inc, .escalator.inc + .overlay {
+    right: 12vw;
+}
+section.single + .escalator, section.single + .escalator + .overlay {
+    left: 37.5vw;   
+}
+
+.escalator .up, .escalator .down {
+    width: 3.5vw;
+    height: 10vw;
+    position: absolute;
+    top: 4.4vw;
+    left: 6.6vw;
+    background-image: url(../images/bg-escalator.png);
+    background-size: 100% 25%;
+    background-repeat: repeat-y;
+    transition-property: background-position;
+    animation-name: animEscalator;
+    animation-duration: 2s;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.selected .escalator .down {
+    cursor: pointer; 
+}
+.escalator .down {
+    left: 13.7vw;   
+    animation-direction: reverse;
+}
+@keyframes animEscalator {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 -50%; }
+}
+
+
+
+/*******************************************************
+ *                      Screens                        *
+ *******************************************************/
+
+.machine {
+    position: absolute;
+    background-color: gray;
+    width: 70vw;
+    max-width: 100vh;
+    left: 15vw;
+    top: 2vh;
+    height: 95vh;
+    border-radius: 2vw 2vw 0 0;
+    border
+}
+
+/* Title (yellow element) */
+.machine .title {
+    width: 80%;
+    margin: 4vh auto;
+    padding: 1vw;
+    font-size: 5.5vh;
+    text-align: center;
+    background: #C2C200;
+    height: 7vh;
+    line-height: 7vh;
+    border: inset 0.4vw #000;
+}
+
+
+/* Screen with left and right parts */
+.machine .screen {
+    position: relative;    
+    height: 50vh;
+    width: 80%;
+    margin: 1vw auto;
+    border: inset 1vw #000;
+}
+
+.machine .screen input {
+    position: absolute; 
+    visibility: hidden;
+}
+
+
+.machine .screen .left, .machine .screen .right {
+    position: absolute; 
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.machine .screen .left {
+    width: 20%;
+    left: 0;
+    border-right: solid 0.5vw #333;
+}
+.machine .screen .right {
+    width: 80%;  
+    right: 0;
+    background-color: white;
+}
+
+.left > * {
+    margin: 1vw;
+    border: inset 0.2vw #000;
+    border-radius: 0vw;
+    padding: 0.5vw;
+    line-height: 1vw;
+    font-size: 1vw;
+    text-align: center;
+    background-color: white;
+    width: 70%;
+    box-sizing: border-box;
+}   
+.left > *:active {
+    background-color: pink;  
+}
+.left * {
+    cursor: pointer;
+}
+#cbJPEN:checked ~ * [lang="jp"] {
+    display: none;   
+}
+#cbJPEN:checked ~ * [lang="en"] {
+    display: inline;   
+}
+[lang=en] {
+    display: none;   
+}
+[lang=jp] {
+    display: inline;   
+}
+
+.left button > img {
+    height: 1.5vw;
+    width: auto;
+    vertical-align: bottom;
+}
+
+.screen #btnCancel {
+    position: absolute;
+    bottom: 6.5vh;
+}
+.left #lblJPEN {
+    position: absolute;
+    bottom: 0.5vh;
+}
+
+.right img {
+    width: 10vw;
+    height: auto;
+}
+
+
+
+aside .machine {
+    perspective: 500px;   
+}
+aside .machine .tablet {
+    margin: 3% auto;
+    width: 86%;
+    height: 15%;
+    left: 7%;
+    background-color: lightgray;
+    transform-origin: center center; 
+    transform: rotateX(10deg);   
+    border: inset 0.5vw #000;
+}
+
+.tablet > * {
+    position: absolute;
+}
+
+.tablet .tickets {
+    width: 12vw;
+    border: solid 0.3vw black;
+    height: 1%;
+    left: 2vw;
+    top: 50%;
+    cursor: pointer;
+}
+.tablet .tickets .ticket {
+    width: 4vw;
+    height: 4vh;
+    display: none;
+    padding: 0.3vh;
+    line-height: 4vh;
+    position: absolute;
+    transform-origin: top left;
+    transform: translateX(80%) rotate(90deg);
+    margin: 0 auto;
+    border: solid 1px #000;
+    background-color: aliceblue;
+}
+.out .tablet .tickets .ticket {
+    display: block;
+}
+
+.tablet .coins {
+    width: 1vh;
+    border: solid 0.3vw black;
+    height: 5vh;
+    right: 25vh;
+    bottom: 4vh;
+    cursor: pointer;
+    background-color: #333;
+    box-shadow: -0.3vh 0.20vh 0 #222, 
+                -0.3vh 0.2vh 0 #222;
+}
+
+.tablet .contactless {
+    background-image: url(../images/contactless.png);
+    background-size: 50%;
+    background-position: 50% 70%;
+    background-repeat: no-repeat;
+    background-color: white;
+    right: 1vw;
+    bottom: 1vh;
+    width: 20vh;
+    height: 12vh;
+    border: solid 0.5vw #000;  
+    cursor: pointer;
+    text-align: center;
+    padding-top: 0.2vh;
+    box-sizing: border-box;
+}
+
+.tablet .contactless span {
+    display: inline-block;
+    margin: auto 2%;
+    width: 2.5vh;
+    height: 1.5vh;
+    border: outset 2px #000;
+}
+
+
+.payment .tablet .contactless:active span:nth-child(1) {
+    animation-name: smalllights;
+    animation-iteration-count: 1;
+    animation-duration: 2.5s;
+    animation-delay: 0s;
+}
+.payment .tablet .contactless:active span:nth-child(2) {
+    animation-name: smalllights;
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+    animation-delay: 0.5s;
+}
+.payment .tablet .contactless:active span:nth-child(3) {
+    animation-name: smalllights;
+    animation-iteration-count: 1;
+    animation-duration: 1.5s;
+    animation-delay: 1s;
+}
+.payment .tablet .contactless:active span:nth-child(4) {
+    animation-name: smalllights;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+}
+
+@keyframes smalllights {
+    0% {
+        background-color: #0F0;   
+    }
+    100% {
+        background-color: #0F0;   
+    }
+}
+
+
+.btnClose {
+    position: fixed; 
+    top: 2vw;
+    right: 2vw;
+    width: 3vw;
+    height: 3vw;
+    border: solid 0.2vw #FFF;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+.btnClose:before, .btnClose:after {
+    content: '';
+    position: absolute; 
+    transform-origin: center; 
+    top: 10%;
+    left: 40%;
+    height: 80%;
+    width: 20%;
+    background-color: black;
+}
+.btnClose:before { 
+    transform: rotate(45deg);
+}
+.btnClose:after {
+    transform: rotate(-45deg);
+}
+
+aside.out .btnClose {
+    display: none;   
+}
+
+.screen .right {
+    justify-content: center;
+}
+
+.screen .right > * {
+    color: black;
+    text-align: center;
+    margin: 3vh;
+}
+
+.screen .right .fares label {
+    display: inline-block;
+    margin: 1vw;
+    padding: 1.5vh 2vh;
+    text-align: center;
+    border-radius: 0.7vh;
+    border: solid 2px black;
+    cursor: pointer;
+}
+.screen .right .fares label:before {
+    content: '\00A5 ' attr(data-fare);
+    padding-right: 2px;
+}
+.screen .right .fares label:after {
+    content: '/' attr(data-child);
+    font-size: 80%;
+}
+
+
+.screen .msgPayment:after {
+    display: block;
+    content: '\00A5' attr(data-total);
+    margin: 1vh auto;
+}
+
+.fareAdjustment #btnOneAdult, .fareAdjustment #btnOneChild {
+    display: none;   
+}
+
+
+
+
+
+/****************************************************
+ *              INSIDE THE TRAIN
+ ****************************************************/
+
+nav {
+    overflow: hidden;
+    height: 100vh;
+}   
+
+.outside {
+    width: 100vw;
+    height: 100vh;
+    background: black; 
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    height: 60vh;
+    transition: opacity 0.5s linear 0s;
+}
+.outside .wall {
+    cursor: pointer;
+    width: 900vh;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: -300vh;
+    background-image: repeating-linear-gradient(90deg, lightgray, lightgray 80vh, grey 80vh, grey 81vh, black 82vh);
+    background-color: white;
+}
+nav.animate .outside .wall {
+    animation-name: animWall;
+    animation-duration: 14s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s; 
+    animation-fill-mode: forwards;
+}
+nav.animate.inc .outside .wall {
+    animation-direction: normal;   
+}
+nav.animate.dec .outside .wall {
+    animation-direction: reverse;   
+}
+
+@keyframes animWall {
+    0% {
+        left: -300vh;
+        opacity: 1;
+    }
+    25% {
+        left: -300vh;
+        opacity: 1;
+    }
+    47% {
+        opacity: 1;
+    }
+    48% {
+        opacity: 0;
+        left: -1000vh;
+    }
+    49% {
+        opacity: 0;
+        left: 140vw;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+        left: -300vh;   
+    }
+    100% {
+        left: -300vh;   
+        opacity: 1;
+    }
+}
+
+.wall .station {
+    border: outset 2vh #000;
+    position: absolute;
+    height: 24vh;
+    width: 44vh;
+    background-color: #222;
+    left: 350vh;
+    top: 10vh;
+    color: white; 
+    font-size: 3vh;
+    padding-top: 6vh;
+    box-sizing: border-box;
+    font-weight: bold;
+    text-align: center;
+}
+.wall .station:nth-of-type(1) {
+    left: 5%;   
+}
+.wall .station:nth-of-type(3) {
+    left: 90%;   
+}
+.wall .exit:nth-of-type(4) {
+    left: 20%;
+}
+.wall .exit:nth-of-type(5) {
+    left: 470vh;
+}
+.wall .exit:nth-of-type(6) {
+    left: 85%;
+}
+
+
+.wall .station > div {
+    display: block;
+    position: absolute;
+}
+
+.wall .station .line {
+    border: solid 0.5vh white;
+    color: black;
+    background-color: white; 
+    left: 1.5vh;
+    top: 1.5vh;
+    width: 6vh;
+    height: 6vh;
+    border-radius: 50%;
+    font-size: 70%;
+}
+.wall .station .line:before, 
+.wall .station .line:after {
+    left: 0;
+    width: 6vh;
+    line-height: 3vh;
+    position: absolute; 
+    height: 2.5vh;
+    text-align: center;
+}   
+.wall .station .line:before {
+    content: attr(data-line);
+    top: 0.5vh;
+}
+.wall .station .line:after {
+    content: attr(data-number);
+    bottom: 0.6vh;
+}
+
+.wall .station .station-arrow {
+    font-size: 1.5vh;
+    bottom: 4.2vh;
+    width: 30vh;
+    height: 1.5vh;
+    left: 5vh;
+    text-align: left;
+    font-weight: normal;
+}
+.wall .station .station-arrow:before,
+.wall .station .station-arrow:after {
+    content: '';
+    background-color: white;
+    width: 1.5vh;
+    height: 1.5vh;
+    border-radius: 50%;
+    position: absolute; 
+    top: 0;
+}
+.wall .station .station-arrow:before {
+    left: 14vh;
+}
+nav .wall .station.dec .station-arrow:after {
+    left: 2vh;
+}
+nav .wall .station.inc .station-arrow:after {
+    right: 2vh;
+}
+.wall .station .station-arrow > div {
+    position: absolute; 
+    bottom: -3.7vh;
+}
+.wall .station .station-arrow .previous {
+    left: 1vh;
+}
+.wall .station .station-arrow .next {
+    text-align: right;
+    right: 1vh;
+}
+.wall .station .station-arrow .previous:before,
+.wall .station .station-arrow .next:before {
+    display: block;
+    position: absolute;
+    content: attr(data-number);
+    top: -3.8vh;
+}
+.wall .station .station-arrow .previous:before {
+    left: 0.5vh;   
+}
+.wall .station .station-arrow .next:before {
+    right: 0.5vh;   
+}
+nav .wall .station.inc .station-arrow .previous:before,
+nav .wall .station.dec .station-arrow .next:before {
+    display: none;
+}
+
+.station .station-arrow .arrow-head {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -0.75vh;
+    border-top: 1.5vh solid transparent;
+    border-bottom: 1.5vh solid transparent;
+}
+nav .station.dec .station-arrow .arrow-head {
+    border-right: 3vh solid red;
+    left: -2.5vh;
+}
+nav .station.inc .station-arrow .arrow-head {
+    border-left: 3vh solid red;
+    right: -2.5vh;
+}
+
+
+.wall .exit {
+    position: absolute; 
+    top: 30vh;
+    height: 10vh;
+    width: 15vh;
+    background-color: #BB4;
+    color: #000;
+    font-size: 3vh;
+    line-height: 4vh;
+    padding: 1vh 1vh;
+    left: 450vh;
+    box-sizing: border-box;
+    border: outset 0.5vh #000;
+}
+.wall .exit:before {
+    content: '\2794';
+    display: block;
+    position: absolute;
+    top: 3vh;
+    font-size: 250%;
+}
+.wall .exit.exit-right {
+    text-align: left;
+}
+.wall .exit.exit-right:before {
+    right: 1vh;
+}
+.wall .exit.exit-left {
+    text-align: right;
+}
+.wall .exit.exit-left:before {
+    transform-origin: center center;
+    transform: rotate(180deg);
+    left: 1vh;
+}
+
+
+/****** INSIDE THE TRAIN ****/
+
+
+nav {
+    perspective: 500px;
+    --color-inside: beige;
+    --color-border: grey;
+    --color-doors: #888;
+}
+
+nav .top {
+    position: relative;
+    width: 80vw;
+    height: 25vh;
+    margin: 0 auto;
+    background-image: linear-gradient(to bottom, var(--color-border), var(--color-inside));
+    transform-origin: center 25vh;
+    transform: rotateX(-20deg);
+    border: solid 2vh var(--color-border);
+    border-top: none;
+}
+nav .top:before,
+nav .top:after {
+    position: absolute; 
+    display: block;
+    content: '';
+    background-image: linear-gradient(to bottom, var(--color-border), var(--color-inside));
+    width: 10vw;
+    height: 25vh;    
+    border: solid 2vh var(--color-border);
+    border-top: none;
+}
+nav .top:before {
+    left: -10.5vw;
+}
+nav .top:after {
+    right: -10.5vw;
+}
+
+
+nav .top .plan {
+    position: absolute;
+    width: 72vw;
+    height: 16vh;
+    background: black;
+    left: 4vw;
+    top: 6vh;
+    color: white;
+    box-sizing: border-box;
+    padding-top: 10.5vh;
+    padding-left: 0vw;
+    border-radius: 8vh;
+    text-align: center;
+}
+nav .top .plan:before,
+nav .top .plan:after {
+    display: block;
+    position: absolute; 
+    left: 0vw; 
+    top: 2vh;
+    content: attr(data-jp);
+    width: 9vw;
+    height: 3vh;
+}
+nav .top .plan:after {
+    top: 5vh;
+    content: attr(data-en) ' Line';
+}
+.plan > div {
+    display: inline-block;
+    width: 2.3vw;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+    border-top: solid 0.2vw;
+    border-bottom: solid 0.2vw;
+    border-color: inherit;
+    overflow: visible;
+    font-size: 0.8vw;
+    color: white;
+    margin-left: 0.8vw;
+}
+.plan > div:before {
+    content: '';
+    display: block;
+    position: absolute; 
+    width: 1vw;
+    height: 1vw;
+    box-sizing: border-box;
+    border-width: 0.2vw;
+    border-color: inherit;
+    border-radius: 50%;
+    border-style: solid;   
+    top: -0.5vw;
+    left: -0.9vw;
+}
+.plan > div.visited:before {
+    border-width: 0.5vw;
+}
+.plan > div:after {
+    content: attr(data-number);
+    display: block;
+    position: absolute; 
+    top: 1vw;
+    left: -1.2vw;
+}
+.plan > div:last-child {
+    border-width: 0;
+    padding-top: 0.1vw;
+}
+.plan > div > span {
+    position: absolute;
+    display: block;
+    top: -1.1vw;
+    left: 0.3vw;
+    width: 9vw;
+    text-align: left;
+    transform-origin: center left;
+    transform: rotate(-35deg);
+    animation: animTextPlan 6s linear infinite;
+}
+.plan > div > span:last-child {
+    opacity: 0;
+    animation-delay: 3s;
+}
+nav.animate .plan > div.current:before {
+    animation: changeSpotBackground 1s linear 2s infinite; 
+}
+@keyFrames changeSpotBackground {
+    0% { background-color: white; }
+    50% { background-color: black; }
+    100% { background-color: white; }
+}
+
+@keyframes animTextPlan {
+    0% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 1;   
+    }
+    50% {
+        opacity: 0;   
+    }
+    90% {
+        opacity: 0;   
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+nav .left > img, nav .right > img {
+    width: 10vw;
+    height: 14.2vw;
+    border: inset 0.5vw;
+    position: absolute;
+    top: 3vw;
+}
+nav .left > img {
+    left: 10vw;   
+}
+nav .right > img {
+    right: 10vw;   
+}
+
+
+nav .announce {
+    position: relative;
+    height: 10vh;
+    width: 100vw;
+    box-sizing: border-box;
+    border-top: solid 1vh #222;
+    border-bottom: solid 1vh #222;
+    background-color: var(--color-inside);
+}
+nav .announce .text {
+    margin: 0 auto;
+    width: 60vw;
+    background: black;
+    color: white;
+    height: 8.5vh;
+    padding-top: 1.5vh;
+    box-sizing: border-box;
+    border: solid 1vh #222;
+    overflow: hidden;
+    padding-left: 1vh;
+}
+nav .announce .text span {
+    display: block;
+    position: relative;
+    font-size: 4vh;
+    width: 60vw;
+    margin-left: 60vw;
+    margin-top: 0vh;
+}
+nav.animate .announce .text span {
+    animation: animText 6s linear 2s infinite;
+}
+
+@keyframes animText {
+    0% {
+        margin-top: 0vh;
+        margin-left: 60vw;
+    }
+    30% {
+        margin-top: 0vh;  
+        margin-left: 0;
+    }
+    50% {
+        margin-top: 0vh;
+    }
+    60% {
+        margin-top: 0vh;
+    }
+    70% {
+        margin-top: -8vh;   
+    }
+    100% {
+        margin-top: -8vh;
+        margin-left: 0;
+    }
+}
+
+nav .door, nav .left, nav .right {
+    position: absolute; 
+    box-sizing: border-box;
+    top: 37vh;
+    height: 66vh;
+    border-top: solid 7vh var(--color-inside); 
+    border-bottom: solid 12vh var(--color-inside);
+}
+nav .left, nav .right {
+    width: 25vw;
+    z-index: 3;
+}
+nav .right {
+    right: 0;   
+    border-left: solid 20vw var(--color-inside);
+    box-shadow: -2vh 0 0 #222;
+}
+nav .left {
+    left: 0;
+    border-right: solid 20vw var(--color-inside);
+    box-shadow: 2vh 0 0 #222;
+}
+nav .left:before, nav .right:before {
+    display: block;
+    content: '';
+    border: solid 3vh #222;
+    width: 5vw;
+    height: 43vh;
+    position: absolute; 
+    top: -1vh;
+}
+nav .left:before {
+    left: -1vh;
+    box-shadow: 0.2vh 0.2vh 0.2vh #222;
+    border-left: none;
+    border-radius: 0 2vh 2vh 0;
+}
+nav .right:before {
+    right: -1vh;
+    box-shadow: 0.2vh 0.2vh 0.2vh #222;
+    border-right: none;
+    border-radius: 2vh 0 0 2vh;
+}
+
+nav .door {
+    z-index: 0;
+    width: 25vw;
+    border-left: solid 2.5vh #222;
+    border-right: solid 2.5vh #222;
+    border-top: none;
+    border-bottom: none;
+    box-shadow: 1vh 0 0 #000, -1vh 0 0 #000;
+}
+nav .door:nth-child(5) {
+    left: 5vw;
+}
+nav.animate .door:nth-child(5) {
+    animation: doorOpeningLeft 14s ease-out 1 0s;
+}
+nav .door:nth-child(6) {
+    right: 5vw;
+}
+nav.animate .door:nth-child(6) {
+    animation: doorOpeningRight 14s ease-out 1 0s;
+}
+nav .door:before, nav .door:after {
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    content: '';
+}
+nav .door:before {
+    width: 100%;
+    height: 100%;
+    border-top: solid 10vh var(--color-doors); 
+    border-left: solid 8vh var(--color-doors); 
+    border-right: solid 8vh var(--color-doors); 
+    border-bottom: solid 10vh var(--color-doors);
+}
+nav .door:after {
+    top: 9vh;
+    left: 6vh;
+    width: calc(25vw - 18vh);
+    height: 48vh;
+    border: solid 3vh #222;
+    box-shadow: 0.2vh 0.2vh 0.2vh #222;
+    border-radius: 2vh;
+}
+    
+
+@keyframes doorOpeningLeft {
+    0% {
+        left: 5vw;      
+    }
+    10% {
+        left: 5vw;      
+    }
+    20% {
+        left: 24.5vw;
+    }
+    80% {
+        left: 24.5vw;  
+    }
+    90% {
+        left: 5vw;   
+    }
+    100% {
+        left: 5vw;   
+    }
+}
+
+@keyframes doorOpeningRight {
+    0% {
+        right: 5vw;      
+    }
+    10% {
+        right: 5vw;   
+    }
+    20% {
+        right: 24.5vw;
+    }
+    80% {
+        right: 24.5vw;  
+    }
+    90% {
+        right: 5vw;   
+    }
+    100% {
+        right: 5vw;   
+    }
+}
+
+nav:before {
+    content: '';
+    display: block;
+    left: -101vw;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    position: absolute; 
+    z-index: 100;
+    animation-duration: 14s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease;
+}
+nav.animate:before {
+    animation-name: navBlackness;
+}   
+
+@keyframes navBlackness {
+    0% {
+        left: -101vw;
+        opacity: 0;
+    }
+    27% {
+        left: 0;   
+    }
+    40% {
+        opacity: 0;   
+    }
+    45% {
+        opacity: 0.3;   
+    }
+    57% {
+        opacity: 0.3;
+        left: 0;
+    }
+    62% {
+        opacity: 0;   
+        left: 0vw;
+    }
+    66% {
+        left: -101vw;
+    }
+    100% {
+        opacity: 0;  
+        left: -101vw;
+    }
+}
+
+
+/****************************************************
+ *                      MAP
+ ****************************************************/
+#map {
+    height: 100vh;
+}
+
+#map h2 {
+    position: fixed;
+    color: white;
+    font-size: 6vh;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    padding: 4vh;
+    
+}
+
+#map div {
+    color: white; 
+}
+
+#map > div {
+    margin-top: 32vh;
+    width: 460vh;   
+}
+
+
+#map > div .line {
+    position: relative;
+    margin: 16vh 0 0 12vh;
+    height: 6vh;
+    padding-left: 12vh;
+    overflow: visible;
+}
+#map > div .line:before {
+    position: absolute;
+    left: 6vh;
+    top: 0.4vh;
+    content: attr(data-abbr);
+    background-color: white;
+    line-height: 5.6vh;
+    height: 5.2vh; 
+    width: 5.2vh;
+    font-size: 2.8vh;
+    text-align: center;
+    border-radius: 50%;
+}
+
+
+#map .station, #map .lineinfo {
+    top: -2vh;
+    position: relative; 
+    display: inline-block;
+    vertical-align: middle;
+    width: 14.8vh;
+    margin: 0 4vh;
+    background-color: white;
+    color: black;
+    padding: 0.2vh;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 5vh;
+    height: 10.8vh;
+}
+#map .station {
+    font-size: 1.3vh;
+    border: solid 0.4vh white;
+    cursor: pointer;
+}
+#map .lineinfo {
+    position: fixed;
+    top: auto;
+    margin-top: -2.5vh;
+    left: -4vh;
+    height: 12vh;
+    padding-top: 2vh;
+    color: white;
+    z-index: 1;
+    font-size: 3.2vh;
+}
+#map .lineinfo:after {
+    display: block;
+    position: absolute; 
+    bottom: 1vh;
+    width: 100%;
+    text-align: center;
+    content: attr(data-name) ' Line';
+    font-size: 50%;
+}
+
+
+#map .station.invisible {
+    visibility: hidden;
+}
+#map .station:before, #map .station:after {
+    display: block;
+    position: absolute;
+    text-align: center;
+    font-size: 2.4vh;
+    padding: 0.4vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+#map .station:before {
+    top: 0;
+    height: 4vh;
+    content: attr(data-jp);
+}
+#map .station:after {
+    bottom: 0;
+    height: 2.6vh;
+    font-size: 2vh;
+    content: attr(data-number);
+}
+#map .station.this {
+    background-color: inherit;
+    color: white;
+    width: 14.8vh;
+    height: 10.8vh;
+    border-color: red;
+}
+
+#map .station .price {
+    position: absolute; 
+    background-color: white;
+    color: black;
+    top: -6vh;
+    height: 4vh;
+    left: 25%;
+    text-align: center;
+    width: 50%;
+    padding: 0.2vh;
+    font-size: 2.4vh; 
+}
+#map .station .price:before, 
+#map .station .price:after {
+    display: block;
+    text-align: center;
+}
+#map .station .price:before {
+    content: attr(data-adult);   
+}
+#map .station .price:after {
+    content: attr(data-child);
+    color: red;
+    font-size: 70%;
+}
