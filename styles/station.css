@@ -1535,7 +1535,7 @@ nav .door:before {
 nav .door:after {
     top: 5vw;
     box-sizing: border-box;
-    width: 16vw;
+    width: 15.5vw;
     height: 57vh;
     border: solid 1.6vw #222;
     box-shadow: 0.1vw 0.1vw 0.1vw #222;
