@@ -1323,7 +1323,8 @@ nav .top .plan:after {
     left: -0.9vw;
 }
 .plan > div.visited:before {
-    border-width: 0.5vw;
+    background-color: var(--line-color);
+    border-width: 0.3vw;
 }
 .plan > div:after {
     content: attr(data-number);
@@ -1380,18 +1381,18 @@ nav.animate .plan > div.current:before {
 
 
 nav .left > img, nav .right > img {
-    width: 10vw;
-    height: 14.2vw;
+    width: 13vw;
+    height: 18vw;
     padding: 0;
     border: inset 0.5vw;
     position: absolute;
     top: 3vw;
 }
 nav .left > img {
-    left: 10vw;   
+    left: 8vw;   
 }
 nav .right > img {
-    right: 10vw;   
+    right: 8vw;   
 }
 
 
@@ -1410,7 +1411,7 @@ nav .announce .text {
     background: black;
     color: white;
     height: 4.2vw;
-    padding-top: 0.9vw;
+    padding-top: 1vw;
     box-sizing: border-box;
     border: solid 0.3vw #222;
     overflow: hidden;
@@ -1419,7 +1420,7 @@ nav .announce .text {
 nav .announce .text span {
     display: block;
     position: relative;
-    font-size: 2.5vw;
+    font-size: 2.3vw;
     width: 60vw;
     margin-left: 60vw;
     margin-top: 0vh;
@@ -1444,10 +1445,10 @@ nav.animate .announce .text span {
         margin-top: 0vh;
     }
     70% {
-        margin-top: -5vw;   
+        margin-top: -4.6vw;   
     }
     100% {
-        margin-top: -5vw;
+        margin-top: -4.6vw;
         margin-left: 0;
     }
 }

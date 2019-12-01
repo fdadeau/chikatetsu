@@ -429,7 +429,16 @@ document.addEventListener("DOMContentLoaded", function() {
          */
         this.exitsTrain = function(st, line, dir) {
             this.station = st;
-            let infos = station.escalators[(dir > 0 ? "inc" : "dec") + line.name];
+            let infos;
+            if (this.station.lines[line.name].number == 1) {
+                infos = station.escalators["inc" + line.name];
+            }
+            else if (this.station.lines[line.name].number == line.stations.length) {
+                infos = station.escalators["dec" + line.name];
+            }
+            else {
+                infos = station.escalators[(dir > 0 ? "inc" : "dec") + line.name];
+            }
             this.position.x = infos.x - 7.4;
             this.position.y = infos.y + 12;
             this.element.style.top = this.position.y + "vw";
@@ -1202,7 +1211,7 @@ document.addEventListener("DOMContentLoaded", function() {
          *  @param  Line     line   current line
          */
         function getCodeForPlan(line) {
-            let html = "<div class='plan' data-jp='" + line.jp + "' data-en='" + line.name + "' style='border-color: " + line.color + "; color: " + line.color + ";'>";
+            let html = "<div class='plan' data-jp='" + line.jp + "' data-en='" + line.name + "' style='--line-color: " + line.color + "; border-color: " + line.color + "; color: " + line.color + ";'>";
             for (let st of line.stations) {
                 html += "<div data-number='" + line.abbr + (st.number <= 9 ? '0' : '') + st.number + "'><span>" + st.jp + "</span><span>" + st.name + "</span></div>";   
             }
