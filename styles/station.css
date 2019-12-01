@@ -1382,6 +1382,7 @@ nav.animate .plan > div.current:before {
 nav .left > img, nav .right > img {
     width: 10vw;
     height: 14.2vw;
+    padding: 0;
     border: inset 0.5vw;
     position: absolute;
     top: 3vw;
