@@ -57,12 +57,15 @@ document.addEventListener("DOMContentLoaded", function() {
         /** The currently selected character **/
         this.current = null;
     
+        let index = 0;
+        
         /**
          *  Adds a character to the current set of characters. 
          *  @param      Station     st  the current station in which the character is created.
          */
         this.addCharacter = function(st, sprite) {
             let newChar = new Character(st, sprite);
+            newChar.element.id = "user" + (index++);
             this.characters.push(newChar);
             return newChar;
         }
@@ -1269,8 +1272,8 @@ document.addEventListener("DOMContentLoaded", function() {
         this.displayTicketVending = function() {
             document.querySelector("aside .machine .title").innerHTML = "券売機 - <span>Tickets</span>";
             this.vending = true;
+            this.reset();
             this.element.classList.remove("fareAdjustment");
-            this.state = "TV0";
             this.updateDisplay();
             document.getElementById("cbJPEN").checked = false;
             this.element.previousElementSibling.checked = true;
@@ -1283,7 +1286,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector("aside .machine .title").innerHTML = "運賃調整 - <span>Fare adjustment</span>";
             this.vending = false;
             this.element.classList.add("fareAdjustment");
-            this.state = "FA0";
+            this.reset();
             document.getElementById("cbJPEN").checked = false;
             this.updateDisplay();
             this.element.previousElementSibling.checked = true;

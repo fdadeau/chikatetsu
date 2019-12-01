@@ -503,13 +503,13 @@ h2 img.logo {
     transform-origin: center;
     transform: rotate(180deg);
     top: 28.9vw;
-    left: 58.05vw;
+    left: 58.1vw;
 }
 .barrier:nth-of-type(5) {
-    left: 67.2vw;
+    left: 67.3vw;
 }
 .barrier:nth-of-type(6) {
-    left: 76.6vw;
+    left: 76.7vw;
 }
 
 /** Small doors */
@@ -528,6 +528,7 @@ h2 img.logo {
 .barrier:nth-of-type(6):before {
     transform: scale(-1, 1);
     top: 3.9vw;
+    left: 2.75vw;
 }
 
 
@@ -671,6 +672,7 @@ section.single + .escalator, section.single + .escalator + .overlay {
     width: 80%;
     margin: 1vw auto;
     border: inset 1vw #000;
+    font-size: 2vh;
 }
 
 .machine .screen input {
@@ -701,12 +703,12 @@ section.single + .escalator, section.single + .escalator + .overlay {
     margin: 1vw;
     border: inset 0.2vw #000;
     border-radius: 0vw;
-    padding: 0.5vw;
+    padding: 0.5vw 0.1vw;
     line-height: 1vw;
     font-size: 1vw;
     text-align: center;
     background-color: white;
-    width: 70%;
+    width: 80%;
     box-sizing: border-box;
 }   
 .left > *:active {
@@ -756,7 +758,7 @@ aside .machine {
 aside .machine .tablet {
     margin: 3% auto;
     width: 86%;
-    height: 15%;
+    height: 15vh;
     left: 7%;
     background-color: lightgray;
     transform-origin: center center; 
@@ -770,12 +772,26 @@ aside .machine .tablet {
 
 .tablet .tickets {
     width: 12vw;
-    border: solid 0.3vw black;
-    height: 1%;
+    border: solid 0.6vh black;
+    height: 0.5vh;
     left: 2vw;
+    background-color: #333;
     top: 50%;
     cursor: pointer;
+    position: relative;
 }
+.tablet .tickets:before {
+    content: '';
+    display: block;
+    position: absolute; 
+    left: 3vw;
+    top: -2.3vw;
+    width: 6vw;
+    height: 1.5vw;
+    background-image: url("../images/icon-tickets.png");
+    background-size: 100% 100%;    
+}
+
 .tablet .tickets .ticket {
     width: 4vw;
     height: 3vw;
@@ -797,12 +813,23 @@ aside .machine .tablet {
     width: 1vh;
     border: solid 0.3vw black;
     height: 5vh;
-    right: 25vh;
-    bottom: 4vh;
+    right: 27vh;
+    bottom: 3vh;
     cursor: pointer;
     background-color: #333;
     box-shadow: -0.3vh 0.20vh 0 #222, 
                 -0.3vh 0.2vh 0 #222;
+}
+.tablet .coins:before {
+    content: '';
+    display: block;
+    position: absolute; 
+    left: -2.5vh;
+    top: -5vh;
+    width: 6vh;
+    height: 3.7vh;
+    background-image: url("../images/icon-yens.png");
+    background-size: 100% 100%;
 }
 
 .tablet .contactless {
@@ -824,7 +851,7 @@ aside .machine .tablet {
 
 .tablet .contactless span {
     display: inline-block;
-    margin: auto 2%;
+    margin: 0.2vw 2%;
     width: 2.5vh;
     height: 1.5vh;
     border: outset 2px #000;
@@ -949,16 +976,16 @@ aside.out .btnClose {
 nav {
     overflow: hidden;
     height: 100vh;
+    background-color: #222;
 }   
 
 .outside {
     width: 100vw;
     height: 100vh;
-    background: black; 
     position: absolute; 
     bottom: 0;
     left: 0;
-    height: 60vh;
+    height: calc(100vh - 20vw);
     transition: opacity 0.5s linear 0s;
 }
 .outside .wall {
@@ -1211,12 +1238,12 @@ nav {
 nav .top {
     position: relative;
     width: 80vw;
-    height: 25vh;
+    height: 14vw;
     margin: 0 auto;
     background-image: linear-gradient(to bottom, var(--color-border), var(--color-inside));
-    transform-origin: center 25vh;
+    transform-origin: center 15vw;
     transform: rotateX(-20deg);
-    border: solid 2vh var(--color-border);
+    border: solid 1vw var(--color-border);
     border-top: none;
 }
 nav .top:before,
@@ -1226,8 +1253,8 @@ nav .top:after {
     content: '';
     background-image: linear-gradient(to bottom, var(--color-border), var(--color-inside));
     width: 10vw;
-    height: 25vh;    
-    border: solid 2vh var(--color-border);
+    height: 14vw;    
+    border: solid 1vw var(--color-border);
     border-top: none;
 }
 nav .top:before {
@@ -1241,15 +1268,15 @@ nav .top:after {
 nav .top .plan {
     position: absolute;
     width: 72vw;
-    height: 16vh;
+    height: 10vw;
     background: black;
     left: 4vw;
-    top: 6vh;
+    top: 3vw;
     color: white;
     box-sizing: border-box;
-    padding-top: 10.5vh;
+    padding-top: 6.5vw;
     padding-left: 0vw;
-    border-radius: 8vh;
+    border-radius: 4vw;
     text-align: center;
 }
 nav .top .plan:before,
@@ -1257,13 +1284,14 @@ nav .top .plan:after {
     display: block;
     position: absolute; 
     left: 0vw; 
-    top: 2vh;
+    top: 2vw;
+    font-size: 1.5vw;
     content: attr(data-jp);
     width: 9vw;
-    height: 3vh;
+    height: 2vw;
 }
 nav .top .plan:after {
-    top: 5vh;
+    top: 4vw;
     content: attr(data-en) ' Line';
 }
 .plan > div {
@@ -1368,11 +1396,11 @@ nav .right > img {
 
 nav .announce {
     position: relative;
-    height: 10vh;
+    height: 5vw;
     width: 100vw;
     box-sizing: border-box;
-    border-top: solid 1vh #222;
-    border-bottom: solid 1vh #222;
+    border-top: solid 0.5vw #222;
+    border-bottom: solid 0.5vw #222;
     background-color: var(--color-inside);
 }
 nav .announce .text {
@@ -1380,17 +1408,17 @@ nav .announce .text {
     width: 60vw;
     background: black;
     color: white;
-    height: 8.5vh;
-    padding-top: 1.5vh;
+    height: 4.2vw;
+    padding-top: 0.9vw;
     box-sizing: border-box;
-    border: solid 1vh #222;
+    border: solid 0.3vw #222;
     overflow: hidden;
-    padding-left: 1vh;
+    padding-left: 0.5vw;
 }
 nav .announce .text span {
     display: block;
     position: relative;
-    font-size: 4vh;
+    font-size: 2.5vw;
     width: 60vw;
     margin-left: 60vw;
     margin-top: 0vh;
@@ -1415,10 +1443,10 @@ nav.animate .announce .text span {
         margin-top: 0vh;
     }
     70% {
-        margin-top: -8vh;   
+        margin-top: -5vw;   
     }
     100% {
-        margin-top: -8vh;
+        margin-top: -5vw;
         margin-left: 0;
     }
 }
@@ -1426,10 +1454,10 @@ nav.animate .announce .text span {
 nav .door, nav .left, nav .right {
     position: absolute; 
     box-sizing: border-box;
-    top: 37vh;
-    height: 66vh;
-    border-top: solid 7vh var(--color-inside); 
-    border-bottom: solid 12vh var(--color-inside);
+    top: 20vw;
+    height: calc(100vh - 20vw);
+    border-top: solid 6vw var(--color-inside); 
+    border-bottom: solid calc(45vh - 26vw) var(--color-inside);
 }
 nav .left, nav .right {
     width: 25vw;
@@ -1438,43 +1466,43 @@ nav .left, nav .right {
 nav .right {
     right: 0;   
     border-left: solid 20vw var(--color-inside);
-    box-shadow: -2vh 0 0 #222;
+    box-shadow: -1vw 0 0 #222;
 }
 nav .left {
     left: 0;
     border-right: solid 20vw var(--color-inside);
-    box-shadow: 2vh 0 0 #222;
+    box-shadow: 1vw 0 0 #222;
 }
 nav .left:before, nav .right:before {
     display: block;
     content: '';
-    border: solid 3vh #222;
+    border: solid 1.6vw #222;
     width: 5vw;
-    height: 43vh;
+    height: 54vh;
     position: absolute; 
-    top: -1vh;
+    top: -1vw;
 }
 nav .left:before {
-    left: -1vh;
-    box-shadow: 0.2vh 0.2vh 0.2vh #222;
+    left: -1vw;
+    box-shadow: 0.1vw 0.1vw 0.1vw #222;
     border-left: none;
-    border-radius: 0 2vh 2vh 0;
+    border-radius: 0 1vw 1vw 0;
 }
 nav .right:before {
-    right: -1vh;
-    box-shadow: 0.2vh 0.2vh 0.2vh #222;
+    right: -1vw;
+    box-shadow: 0.1vw 0.1vw 0.1vw #222;
     border-right: none;
-    border-radius: 2vh 0 0 2vh;
+    border-radius: 1vw 0 0 1vw;
 }
 
 nav .door {
     z-index: 0;
     width: 25vw;
-    border-left: solid 2.5vh #222;
-    border-right: solid 2.5vh #222;
+    border-left: solid 2vw #222;
+    border-right: solid 2vw #222;
     border-top: none;
     border-bottom: none;
-    box-shadow: 1vh 0 0 #000, -1vh 0 0 #000;
+    box-shadow: 1vw 0 0 #000, -1vw 0 0 #000;
 }
 nav .door:nth-child(5) {
     left: 5vw;
@@ -1497,20 +1525,27 @@ nav .door:before, nav .door:after {
 nav .door:before {
     width: 100%;
     height: 100%;
-    border-top: solid 10vh var(--color-doors); 
-    border-left: solid 8vh var(--color-doors); 
-    border-right: solid 8vh var(--color-doors); 
-    border-bottom: solid 10vh var(--color-doors);
+    border-top: solid 6vw var(--color-doors); 
+    border-left: solid 4vw var(--color-doors); 
+    border-right: solid 4vw var(--color-doors); 
+    border-bottom: solid calc(45vh - 26vw) var(--color-doors);
 }
 nav .door:after {
-    top: 9vh;
-    left: 6vh;
-    width: calc(25vw - 18vh);
-    height: 48vh;
-    border: solid 3vh #222;
-    box-shadow: 0.2vh 0.2vh 0.2vh #222;
-    border-radius: 2vh;
+    top: 5vw;
+    box-sizing: border-box;
+    width: 16vw;
+    height: 57vh;
+    border: solid 1.6vw #222;
+    box-shadow: 0.1vw 0.1vw 0.1vw #222;
+    border-radius: 1vw;
 }
+nav .door:nth-child(5):after {
+    left: 2.6vw;
+}
+nav .door:nth-child(6):after {
+    right: 2.6vw;
+}
+    
     
 
 @keyframes doorOpeningLeft {
