@@ -35,9 +35,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // recomputation of reference sizes when resize
     window.addEventListener("resize", function(_e) {
-        HEIGHT = station.element.clientHeight;
-        WIDTH = station.element.clientWidth;  
-        BOTTOM = HEIGHT * 100 / WIDTH; 
+        if (station.element.previousElementSibling.checked) {
+            HEIGHT = station.element.clientHeight;
+            WIDTH = station.element.clientWidth;  
+            BOTTOM = HEIGHT * 100 / WIDTH; 
+        }
     });
      
     
