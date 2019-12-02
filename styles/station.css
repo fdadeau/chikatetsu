@@ -240,7 +240,7 @@ input[type="radio"]:checked + * {
     position: relative;
     width: 10vw;
     box-sizing: border-box;
-    height: 4vw;
+    height: 3.8vw;
     border: solid 1px #000;
     background-color: aliceblue;
     padding-top: 2.5vw;    
@@ -772,7 +772,7 @@ aside .machine {
 aside .machine .tablet {
     margin: 3% auto;
     width: 86%;
-    height: 15vh;
+    height: 15%;
     left: 7%;
     background-color: lightgray;
     transform-origin: center center; 
