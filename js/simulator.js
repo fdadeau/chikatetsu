@@ -415,6 +415,10 @@ document.addEventListener("DOMContentLoaded", function() {
          *  @param  int         dir     the direction
          */
         this.entersTrain = function(line, dir) {
+            if (this != characters.current) {
+                this.goTo(this.position.x, this.position.y - 1, null);
+                return;
+            }
             this.state = GOING_IN;
             this.goTo(this.position.x, this.position.y + 3, function() {
                 this.speed = 0.03;
