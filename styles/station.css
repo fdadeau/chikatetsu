@@ -607,7 +607,7 @@ section.single + .escalator, section.single + .escalator + .overlay {
 
 .escalator .up, .escalator .down {
     width: 3.5vw;
-    height: 5vw;
+    height: 4.5vw;
     position: absolute;
     top: 4.4vw;
     left: 6.6vw;

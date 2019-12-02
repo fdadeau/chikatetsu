@@ -826,7 +826,7 @@ document.addEventListener("DOMContentLoaded", function() {
             else {
                 zonesOK.push(
                     { t: 10, l: 4, h: 6+25*nbLines, w: 32 },
-                    { t: 10, l: 61, h: 6+25*nbLines, w: 35 }
+                    { t: 10, l: 64, h: 6+25*nbLines, w: 35 }
                 );
             }
             
