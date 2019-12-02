@@ -665,13 +665,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     return;
                 }
                 // move character to the appropriate point
-                characters.current.goTo(station.barriers[index].x, station.barriers[index].y, function() {
+                characters.current.goTo(station.barriers[index].x, station.barriers[index].y, function(origin) {
                     characters.current.destination.vecY = station.barriers[index].deltaY < 0 ? -1 : 1;
                     characters.current.orientation(0, -1);
-                    characters.current.waitingForTicket = index+1;
-                    characters.current.updateTickets();
-                    document.getElementById("cbTickets").checked = true;
-                });
+                    if (origin == characters.current) {
+                        characters.current.waitingForTicket = index+1;
+                        characters.current.updateTickets();
+                        document.getElementById("cbTickets").checked = true;
+                    }
+                }.bind(null, characters.current));
                 return;
             }
             
