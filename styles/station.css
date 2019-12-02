@@ -96,7 +96,7 @@ main {
     right: 2vw;
     background-image: url(../images/sapporo-map.jpg);
     background-size: cover;
-    border: solid 1vh #660000;
+    border: solid 0.5vw #660000;
     border-radius: 10%;
     cursor: pointer;
 }
@@ -113,7 +113,7 @@ main {
     bottom: 1vw;
     width: 5vw;
     height: 5vw;
-    border: solid 1vh #660000;
+    border: solid 0.5vw #660000;
     border-radius: 10%;
     cursor: pointer;
     padding: 0;
