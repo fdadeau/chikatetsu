@@ -376,7 +376,7 @@ main > section.single:after {
     position: absolute;
     text-align: left;
     box-sizing: border-box;
-    width: 28vw;
+    width: 32vw;
     padding-left: 6vw;
     background-color: #222;
     color: black;
