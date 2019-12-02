@@ -67,6 +67,7 @@ body {
 body > *:not([id^=btn]) {
     width: 100vw;
     position: absolute;
+    box-sizing: border-box;
     display: none;
 }
 

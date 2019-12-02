@@ -693,6 +693,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // sets character direction
             var destX = (e.clientX + scrollX) / WIDTH * 100;
             var destY = (e.clientY + scrollY) * (100 / WIDTH);
+            
             // check if the character is authorized to go there
             if (station.isInZoneOK(characters.current, destX, destY)) {            
                 characters.current.goTo(destX, destY, null);
