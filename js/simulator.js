@@ -453,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function() {
             station.element.appendChild(this.element);
             this.goTo(this.position.x, this.position.y - 9, function() {
                 this.speed = this.INITIAL_SPEED;
-                this.goTo(this.position.x, this.position.y - 5, function() {
+                this.goTo(this.position.x, this.position.y - 6, function() {
                     this.state = INSIDE;
                 }.bind(this));
             }.bind(this));
