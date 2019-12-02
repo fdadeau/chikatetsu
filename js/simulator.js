@@ -1401,6 +1401,9 @@ document.addEventListener("DOMContentLoaded", function() {
          *  &param  int     child   number of children to add
          */
         this.addAdultChild = function(adult, child) {
+            if (this.tickets.adult + this.tickets.child + adult + child > 10) {
+                return;   
+            }
             if (this.state == "TV0" || this.state == "TV1") {
                 this.state = "TV1";
                 this.tickets.adult += adult;
