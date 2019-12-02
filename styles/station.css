@@ -607,10 +607,15 @@ section.single + .escalator, section.single + .escalator + .overlay {
 
 .escalator .up, .escalator .down {
     width: 3.5vw;
-    height: 10vw;
+    height: 5vw;
     position: absolute;
     top: 4.4vw;
     left: 6.6vw;
+    overflow-y: visible;
+}
+.escalator .up, .escalator .down:before {
+    width: 3.5vw;
+    height: 10vw;
     background-image: url(../images/bg-escalator.png);
     background-size: 100% 25%;
     background-repeat: repeat-y;
@@ -621,11 +626,20 @@ section.single + .escalator, section.single + .escalator + .overlay {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
-.selected .escalator .down {
-    cursor: pointer; 
+.escalator .down:before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
 }
 .escalator .down {
     left: 13.7vw;   
+}
+.selected .escalator .down {
+    cursor: pointer; 
+}
+.escalator .down:before {
     animation-direction: reverse;
 }
 @keyframes animEscalator {
