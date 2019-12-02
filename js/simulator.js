@@ -593,6 +593,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (c == null || c.destination.vecX != null) {
                     return;
                 }
+                if (characters.current && characters.current.destination.vecX != null) {
+                    return;   
+                }
                 characters.select(c);   
                 return;
             }
