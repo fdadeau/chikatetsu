@@ -1287,7 +1287,7 @@ nav .top .plan:after {
     top: 2vw;
     font-size: 1.5vw;
     content: attr(data-jp);
-    width: 9vw;
+    width: 10vw;
     height: 2vw;
 }
 nav .top .plan:after {
