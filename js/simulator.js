@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.element.style.zIndex = this.position.y * 10 | 0;
             station.element.appendChild(this.element);
             this.goTo(this.position.x, this.position.y - 9, function() {
-                this.speed = 0.5;
+                this.speed = this.INITIAL_SPEED;
                 this.goTo(this.position.x, this.position.y - 5, function() {
                     this.state = INSIDE;
                 }.bind(this));
