@@ -992,7 +992,7 @@ aside.out .btnClose {
 nav {
     overflow: hidden;
     height: 100vh;
-    background-color: #222;
+    background-color: #000;
 }   
 
 .outside {
@@ -1358,7 +1358,7 @@ nav .top .plan:after {
     display: block;
     top: -1.1vw;
     left: 0.3vw;
-    width: 9vw;
+    width: 10vw;
     text-align: left;
     transform-origin: center left;
     transform: rotate(-35deg);
