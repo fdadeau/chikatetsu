@@ -724,7 +724,7 @@ section.single + .escalator, section.single + .escalator + .overlay {
     font-size: 1vw;
     text-align: center;
     background-color: white;
-    width: 80%;
+    width: 75%;
     box-sizing: border-box;
 }   
 .left > *:active {
@@ -1664,7 +1664,7 @@ nav.animate:before {
  *                      MAP
  ****************************************************/
 #map {
-    height: 100vh;
+    height: 98vh;
 }
 
 #map h2 {
