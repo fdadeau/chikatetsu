@@ -164,7 +164,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             if (characters.current && characters.current.waitingForTicket > 0 && e.target.classList.contains("ticket")) {
                 let index = e.target.dataset.index;
-                let t = characters.current.tickets[index];
+                let t = characters.current.removeTicket(index);
+                characters.current.updateTickets();
                 document.getElementById("cbTickets").checked = false;
                 characters.current.insertTicketInBarrier(t, characters.current.waitingForTicket);
                 return;
@@ -257,6 +258,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 // move character
                 this.goTo(this.position.x, this.position.y + station.barriers[index-1].deltaY, function() {
                     bar.classList.remove("ok");
+                    if (this.state == GOING_IN) {
+                        this.addTicket(t);
+                        this.updateTickets();
+                    }
                     this.state = (this.state == GOING_OUT) ? OUTSIDE : INSIDE;
                 }.bind(this));
             }
