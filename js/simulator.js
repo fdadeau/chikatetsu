@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function() {
          *  @param  Ticket  t       the ticket to insert
          *  @param  int     index   the index of the barrier (1--6)
          */
-        this.insertTicketInBarrier= function(t, index) {
+        this.insertTicketInBarrier = function(t, index) {
             let bar = document.querySelector("footer > .barrier:nth-of-type(" + index + ")");
             // entering station (call to the API)
             let b = (station.barriers[index-1].deltaY > 0) ? station.barrier.exit(t) : station.barrier.enter(t);
@@ -267,6 +267,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             else {
                 bar.classList.add("ko");
+                this.addTicket(t);
                 setTimeout(function(ba) { ba.classList.remove("ko"); }.bind(null, bar), 1000);
             }
             // this.updateTickets();
