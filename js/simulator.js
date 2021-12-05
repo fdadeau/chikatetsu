@@ -1090,8 +1090,8 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector("nav .top").innerHTML = getCodeForPlan(line);
             changeWallPanels(st, line, dir);
             // assign ads in the train 
-            document.getElementById("adLeft").src = "./images/ads/tokyo-metro-manner-" + (Math.random() * 24 | 0) + ".gif";
-            document.getElementById("adRight").src = "./images/ads/tokyo-metro-manner-" + (Math.random() * 24 | 0) + ".gif";
+            document.getElementById("adLeft").src = "./images/affiches/tokyo-metro-manner-" + (Math.random() * 24 | 0) + ".gif";
+            document.getElementById("adRight").src = "./images/affiches/tokyo-metro-manner-" + (Math.random() * 24 | 0) + ".gif";
             
             // runs the train
             this.runTrain();

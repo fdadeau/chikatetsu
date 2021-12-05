@@ -30,28 +30,28 @@ main .sprite.selected:after {
 *                   persoS (+ Animations)
  ***********************************************************/
 .sprite1 {
-    background-image: url(../images/sprite1.png);   
+    background-image: url(../images/raphael0.png);   
 }
 .sprite2 {
-    background-image: url(../images/sprite2.png);   
+    background-image: url(../images/raphael1.png);   
 }
 .sprite3 {
-    background-image: url(../images/sprite3.png);   
+    background-image: url(../images/raphael1.png);   
 }
 .sprite4 {
-    background-image: url(../images/sprite4.png);   
+    background-image: url(../images/raphael2.png);   
 }
 .sprite5 {
-    background-image: url(../images/sprite7.png);   
+    background-image: url(../images/raphael2.png);   
 }
 .sprite6 {
-    background-image: url(../images/sprite6.png);   
+    background-image: url(../images/raphael3.png);   
 }
 .sprite7 {
-    background-image: url(../images/sprite5.png);   
+    background-image: url(../images/raphael4.png);   
 }
 .sprite0 {
-    background-image: url(../images/sprite8.png);   
+    background-image: url(../images/raphael4.png);   
 }
 
 @keyframes animMarcheGauche {
